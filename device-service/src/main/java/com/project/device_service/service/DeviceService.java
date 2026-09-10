@@ -7,6 +7,9 @@ import com.project.device_service.repository.DeviceRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 
 @Service
 @Slf4j
@@ -47,10 +50,13 @@ public class DeviceService {
     }
 
     public DeviceDto updateDevice(Long id, DeviceDto input) {
+        log.info("id={}", id);
+        log.info("input={}", input);
         Device existing = deviceRepository.findById(id)
                 .orElseThrow(() ->
                         new ResourceNotFound("Device not found with id " + id));
 
+        log.info("existing={}", existing);
         existing.setName(input.getName());
         existing.setType(input.getType());
         existing.setLocation(input.getLocation());
@@ -61,9 +67,16 @@ public class DeviceService {
     }
 
     public void deleteDevice(Long id) {
-        if (!deviceRepository.existsById(id)) {
-            throw new ResourceNotFound("Device not found with id " + id);
-        }
+
+
+//            Optional<Device> existing = deviceRepository.findById(id);
+
+        Device existing = deviceRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFound("Device not found with id " + id));
+        log.info("delete device={}", existing);
+
+
         deviceRepository.deleteById(id);
     }
 

@@ -20,7 +20,7 @@ public class Device {
 
     private String name;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private DeviceType type;
 
