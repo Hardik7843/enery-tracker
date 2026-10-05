@@ -1,7 +1,7 @@
 package com.project.ingestion_service.service;
 
 import com.project.ingestion_service.dto.EnergyUsageDto;
-import com.project.ingestion_service.kafka.event.EnergyUsageEvent;
+import com.project.kafka.event.EnergyUsageEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
